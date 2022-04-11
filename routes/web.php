@@ -14,4 +14,4 @@ use App\Http\Controllers\GamesController;
 |
 */
 
-Route::get('/', [GamesController::class, 'index']);
+Route::get('/', [GamesController::class, 'index'])->name('index');

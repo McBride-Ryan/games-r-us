@@ -18,15 +18,20 @@ class GamesController extends Controller
     {
         $popularGames = Http::withHeaders(config('services.igdb'))
             ->withBody(
-                "fields name, genres, screenshots;
-                sort genres desc;
+                "fields name, cover.url, first_release_date, platforms.abbreviation, rating, total_rating_count;
+                where total_rating_count != null;
+                sort total_rating_count desc;
                 limit 20;",
                 "text/plain"
             )
             ->post('https://api.igdb.com/v4/games')
             ->json();
 
-        dd($popularGames);
+        dump($popularGames);
+
+        return view('index', [
+            'popularGames' => $popularGames
+        ]);
     }
 
     /**

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div style="padding: 0 1%;"></div>
-    <div style="display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    padding: 1.25rem;">
+Popular Games
+    <div style="padding: 0 1%;"></div>
+        <div style="display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding: 1.25rem;">
         @foreach ($popularGames as $game)
             <div >
                     <img 
@@ -15,5 +16,35 @@
             </div>
     @endforeach
     </div>
-    
+Sports Games 
+    <div style="padding: 0 1%;"></div>
+        <div style="display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding: 1.25rem;">   
+        @foreach ($sportsGames as $sport)
+            <div >
+                    <img 
+                        class="row__poster"
+                        src="{{ Str::replaceFirst('thumb', 'logo_med', $sport['cover']['url']) }}" alt="cover"
+                    >
+            </div>
+        @endforeach
+    </div>
+
+    Racing Games 
+    <div style="padding: 0 1%;"></div>
+        <div style="display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding: 1.25rem;">   
+        @foreach ($racingGames as $game)
+            <div >
+                    <img 
+                        class="row__poster"
+                        src="{{ Str::replaceFirst('thumb', 'logo_med', $game['cover']['url']) }}" alt="cover"
+                    >
+            </div>
+        @endforeach
+    </div>
 @endsection

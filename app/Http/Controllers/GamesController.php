@@ -27,10 +27,34 @@ class GamesController extends Controller
             ->post('https://api.igdb.com/v4/games')
             ->json();
 
-        dump($popularGames);
+        $sportsGames = Http::withHeaders(config('services.igdb'))
+            ->withBody(
+                "fields name, cover.url, genres;
+                where cover.url != null & genres = {14};
+                sort rating desc;
+                limit 20;",
+                "text/plain"
+            )
+            ->post('https://api.igdb.com/v4/games')
+            ->json();
+
+        $racingGames = Http::withHeaders(config('services.igdb'))
+            ->withBody(
+                "fields name, cover.url, genres;
+                where cover.url != null & genres = {10};
+                sort rating desc;
+                limit 20;",
+                "text/plain"
+            )
+            ->post('https://api.igdb.com/v4/games')
+            ->json();
+
+        // dd($sportsGames);
 
         return view('index', [
-            'popularGames' => $popularGames
+            'popularGames' => $popularGames,
+            'sportsGames' => $sportsGames,
+            'racingGames' => $racingGames
         ]);
     }
 

@@ -90,13 +90,14 @@
     </div>
 
     Aarcade
-    <div 
+    {{-- <div 
             style="
                 display: flex;
                 overflow-x: scroll;
                 overflow-y: hidden;
                 padding: 1.25rem;"
-            >   
+            >    --}}
+            <x-row-section>
         @foreach ($arcadeGames as $game)
             <div style="max-width: 107px; border: 2px solid orange; padding: 10px">
                     <img 
@@ -106,5 +107,7 @@
                     >
             </div>
         @endforeach
-    </div>
+        </x-row-section>
+
+    {{-- </div> --}}
 @endsection
